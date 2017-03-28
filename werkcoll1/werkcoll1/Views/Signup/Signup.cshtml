@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Signup";
+}
+
+<h2>Signup</h2>
+@{
+    if (IsPost)
+    {
+        string email = Request["email"];
+        string mailclient = Request["mailclient"];
+        string passw = Request["password"];
+        <p>
+            You entered: <br />
+            email: @email <br />
+            mailclient : @mailclient <br />
+            password: @passw
+        </p>
+    }
+    else
+    {
+        <form method="post" action="">
+            E-mailadres <input name="email" type="text" /> <br />
+            mailclient: <select name="mailclient">
+                <option value="outlook express"> outlook express</option>
+                <option value="microsoft outlook">microsoft outlook</option>
+                <option value="Thunderbird">Thunderbird</option>
+                <option value="other"></option>
+            </select> <br />
+            passwoord: <input name="password" type="text" />
+            <input type="submit" name="submit" value="sign in now!" />
+        </form>
+    }
+}
+
