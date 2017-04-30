@@ -1,4 +1,8 @@
-﻿namespace GUI
+﻿using logic;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace GUI
 {
     partial class Form1
     {
@@ -31,6 +35,14 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.behandArts = new System.Windows.Forms.ComboBox();
+            this.coordArts = new System.Windows.Forms.ComboBox();
+            this.kathMet5 = new System.Windows.Forms.ComboBox();
+            this.kathMet4 = new System.Windows.Forms.ComboBox();
+            this.kathMet3 = new System.Windows.Forms.ComboBox();
+            this.kathMet2 = new System.Windows.Forms.ComboBox();
+            this.kathMet1 = new System.Windows.Forms.ComboBox();
+            this.dnrDrop = new System.Windows.Forms.ComboBox();
             this.niCardTromb = new System.Windows.Forms.CheckBox();
             this.cardTromb = new System.Windows.Forms.CheckBox();
             this.tempPm = new System.Windows.Forms.CheckBox();
@@ -57,11 +69,6 @@
             this.kathDate3 = new System.Windows.Forms.TextBox();
             this.kathDate4 = new System.Windows.Forms.TextBox();
             this.KathDate1 = new System.Windows.Forms.TextBox();
-            this.kathMet5 = new System.Windows.Forms.ListBox();
-            this.kathMet4 = new System.Windows.Forms.ListBox();
-            this.kathMet3 = new System.Windows.Forms.ListBox();
-            this.kathMet2 = new System.Windows.Forms.ListBox();
-            this.kathMet1 = new System.Windows.Forms.ListBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.thuismedicatie = new System.Windows.Forms.TextBox();
@@ -70,9 +77,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.diagnose = new System.Windows.Forms.TextBox();
-            this.dnrBox = new System.Windows.Forms.ListBox();
-            this.behandelArts = new System.Windows.Forms.ListBox();
-            this.coordArts = new System.Windows.Forms.ListBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -83,8 +87,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.opnameDatum = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.gaatNaarBox = new System.Windows.Forms.ComboBox();
+            this.komtVanBox = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -113,6 +117,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label55 = new System.Windows.Forms.Label();
             this.nivFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.ademStopU3 = new System.Windows.Forms.TextBox();
             this.ademStartU3 = new System.Windows.Forms.TextBox();
@@ -138,12 +143,116 @@
             this.label45 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.medicMeth1 = new System.Windows.Forms.ComboBox();
+            this.medicper1 = new System.Windows.Forms.ComboBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.medicText1 = new System.Windows.Forms.TextBox();
+            this.zalvingCheckBox = new System.Windows.Forms.CheckBox();
+            this.KineCheckBox = new System.Windows.Forms.CheckBox();
+            this.Dieet = new System.Windows.Forms.TextBox();
+            this.svCheckbox = new System.Windows.Forms.CheckBox();
+            this.teleCombo = new System.Windows.Forms.ComboBox();
+            this.bloedDrukBox = new System.Windows.Forms.TextBox();
+            this.pressureBox = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.ritmeBox = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.medicMeth11 = new System.Windows.Forms.ComboBox();
+            this.medicper11 = new System.Windows.Forms.ComboBox();
+            this.medicText11 = new System.Windows.Forms.TextBox();
+            this.medicMeth2 = new System.Windows.Forms.ComboBox();
+            this.medicper2 = new System.Windows.Forms.ComboBox();
+            this.medicText2 = new System.Windows.Forms.TextBox();
+            this.medicMeth12 = new System.Windows.Forms.ComboBox();
+            this.medicper12 = new System.Windows.Forms.ComboBox();
+            this.medicText12 = new System.Windows.Forms.TextBox();
+            this.medicMeth3 = new System.Windows.Forms.ComboBox();
+            this.medicper3 = new System.Windows.Forms.ComboBox();
+            this.medicText3 = new System.Windows.Forms.TextBox();
+            this.medicMeth13 = new System.Windows.Forms.ComboBox();
+            this.medicper13 = new System.Windows.Forms.ComboBox();
+            this.medicText13 = new System.Windows.Forms.TextBox();
+            this.medicMeth4 = new System.Windows.Forms.ComboBox();
+            this.medicper4 = new System.Windows.Forms.ComboBox();
+            this.medicText4 = new System.Windows.Forms.TextBox();
+            this.medicMeth14 = new System.Windows.Forms.ComboBox();
+            this.medicper14 = new System.Windows.Forms.ComboBox();
+            this.medicText14 = new System.Windows.Forms.TextBox();
+            this.medicMeth5 = new System.Windows.Forms.ComboBox();
+            this.medicper5 = new System.Windows.Forms.ComboBox();
+            this.medicText5 = new System.Windows.Forms.TextBox();
+            this.medicMeth15 = new System.Windows.Forms.ComboBox();
+            this.medicper15 = new System.Windows.Forms.ComboBox();
+            this.medicText15 = new System.Windows.Forms.TextBox();
+            this.medicMeth10 = new System.Windows.Forms.ComboBox();
+            this.medicper10 = new System.Windows.Forms.ComboBox();
+            this.medicText10 = new System.Windows.Forms.TextBox();
+            this.medicMeth9 = new System.Windows.Forms.ComboBox();
+            this.medicper9 = new System.Windows.Forms.ComboBox();
+            this.medicText9 = new System.Windows.Forms.TextBox();
+            this.medicMeth8 = new System.Windows.Forms.ComboBox();
+            this.medicper8 = new System.Windows.Forms.ComboBox();
+            this.medicText8 = new System.Windows.Forms.TextBox();
+            this.medicMeth7 = new System.Windows.Forms.ComboBox();
+            this.medicper7 = new System.Windows.Forms.ComboBox();
+            this.medicText7 = new System.Windows.Forms.TextBox();
+            this.medicMeth6 = new System.Windows.Forms.ComboBox();
+            this.medicper6 = new System.Windows.Forms.ComboBox();
+            this.medicText6 = new System.Windows.Forms.TextBox();
+            this.medicMeth20 = new System.Windows.Forms.ComboBox();
+            this.medicper20 = new System.Windows.Forms.ComboBox();
+            this.medicText20 = new System.Windows.Forms.TextBox();
+            this.medicMeth19 = new System.Windows.Forms.ComboBox();
+            this.medicper19 = new System.Windows.Forms.ComboBox();
+            this.medicText19 = new System.Windows.Forms.TextBox();
+            this.medicMeth18 = new System.Windows.Forms.ComboBox();
+            this.medicper18 = new System.Windows.Forms.ComboBox();
+            this.medicText18 = new System.Windows.Forms.TextBox();
+            this.medicMeth17 = new System.Windows.Forms.ComboBox();
+            this.medicper17 = new System.Windows.Forms.ComboBox();
+            this.medicText17 = new System.Windows.Forms.TextBox();
+            this.medicMeth16 = new System.Windows.Forms.ComboBox();
+            this.medicper16 = new System.Windows.Forms.ComboBox();
+            this.medicText16 = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.infuustext1 = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.infuustext2 = new System.Windows.Forms.TextBox();
+            this.infuustext3 = new System.Windows.Forms.TextBox();
+            this.pdaText = new System.Windows.Forms.TextBox();
+            this.infuusMini1 = new System.Windows.Forms.TextBox();
+            this.infuusMini2 = new System.Windows.Forms.TextBox();
+            this.infuusMini3 = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.pdaMini = new System.Windows.Forms.TextBox();
+            this.onderzoekbox1 = new System.Windows.Forms.TextBox();
+            this.onderzoekbox2 = new System.Windows.Forms.TextBox();
+            this.onderzoekbox4 = new System.Windows.Forms.TextBox();
+            this.onderzoekbox3 = new System.Windows.Forms.TextBox();
+            this.drainbox4 = new System.Windows.Forms.TextBox();
+            this.drainbox3 = new System.Windows.Forms.TextBox();
+            this.drainbox2 = new System.Windows.Forms.TextBox();
+            this.drainbox1 = new System.Windows.Forms.TextBox();
+            this.zorgbox = new System.Windows.Forms.TextBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.VerslagBox = new System.Windows.Forms.TextBox();
+            this.verpleegkundigeBox = new System.Windows.Forms.ComboBox();
+            this.label61 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.nivFlowPanel.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -151,6 +260,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -159,6 +269,14 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.behandArts);
+            this.tabPage1.Controls.Add(this.coordArts);
+            this.tabPage1.Controls.Add(this.kathMet5);
+            this.tabPage1.Controls.Add(this.kathMet4);
+            this.tabPage1.Controls.Add(this.kathMet3);
+            this.tabPage1.Controls.Add(this.kathMet2);
+            this.tabPage1.Controls.Add(this.kathMet1);
+            this.tabPage1.Controls.Add(this.dnrDrop);
             this.tabPage1.Controls.Add(this.niCardTromb);
             this.tabPage1.Controls.Add(this.cardTromb);
             this.tabPage1.Controls.Add(this.tempPm);
@@ -185,11 +303,6 @@
             this.tabPage1.Controls.Add(this.kathDate3);
             this.tabPage1.Controls.Add(this.kathDate4);
             this.tabPage1.Controls.Add(this.KathDate1);
-            this.tabPage1.Controls.Add(this.kathMet5);
-            this.tabPage1.Controls.Add(this.kathMet4);
-            this.tabPage1.Controls.Add(this.kathMet3);
-            this.tabPage1.Controls.Add(this.kathMet2);
-            this.tabPage1.Controls.Add(this.kathMet1);
             this.tabPage1.Controls.Add(this.label28);
             this.tabPage1.Controls.Add(this.label27);
             this.tabPage1.Controls.Add(this.thuismedicatie);
@@ -198,9 +311,6 @@
             this.tabPage1.Controls.Add(this.label25);
             this.tabPage1.Controls.Add(this.label24);
             this.tabPage1.Controls.Add(this.diagnose);
-            this.tabPage1.Controls.Add(this.dnrBox);
-            this.tabPage1.Controls.Add(this.behandelArts);
-            this.tabPage1.Controls.Add(this.coordArts);
             this.tabPage1.Controls.Add(this.label23);
             this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.label21);
@@ -211,8 +321,8 @@
             this.tabPage1.Controls.Add(this.textBox2);
             this.tabPage1.Controls.Add(this.opnameDatum);
             this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.comboBox2);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.gaatNaarBox);
+            this.tabPage1.Controls.Add(this.komtVanBox);
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.label17);
             this.tabPage1.Controls.Add(this.label16);
@@ -247,6 +357,163 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // behandArts
+            // 
+            this.behandArts.FormattingEnabled = true;
+            this.behandArts.Items.AddRange(new object[] {
+            "Anesthesist / Intesivist",
+            "Cardioloog",
+            "Chirurg",
+            "Endocrinoloog",
+            "Gastro - Enteroloog",
+            "Geriater",
+            "Gynaecoloog",
+            "Nefroloog",
+            "Neuroloog / Psychiater",
+            "Neurochirurg",
+            "NKO",
+            "Oftalmoloog",
+            "Orthopedist / Traumatoloog",
+            "Pneumoloog",
+            "Plastische chirurg",
+            "Paediater",
+            "Stomatoloog",
+            "Uroloog"});
+            this.behandArts.Location = new System.Drawing.Point(560, 205);
+            this.behandArts.Name = "behandArts";
+            this.behandArts.Size = new System.Drawing.Size(193, 21);
+            this.behandArts.TabIndex = 98;
+            // 
+            // coordArts
+            // 
+            this.coordArts.FormattingEnabled = true;
+            this.coordArts.Items.AddRange(new object[] {
+            "Anesthesist / Intesivist",
+            "Cardioloog",
+            "Chirurg",
+            "Endocrinoloog",
+            "Gastro - Enteroloog",
+            "Geriater",
+            "Gynaecoloog",
+            "Nefroloog",
+            "Neuroloog / Psychiater",
+            "Neurochirurg",
+            "NKO",
+            "Oftalmoloog",
+            "Orthopedist / Traumatoloog",
+            "Pneumoloog",
+            "Plastische chirurg",
+            "Paediater",
+            "Stomatoloog",
+            "Uroloog"});
+            this.coordArts.Location = new System.Drawing.Point(108, 205);
+            this.coordArts.Name = "coordArts";
+            this.coordArts.Size = new System.Drawing.Size(193, 21);
+            this.coordArts.TabIndex = 97;
+            // 
+            // kathMet5
+            // 
+            this.kathMet5.FormattingEnabled = true;
+            this.kathMet5.Items.AddRange(new object[] {
+            "Perifeer",
+            "Jugularis Duo",
+            "Jugularis Trio",
+            "Jugularis Quad",
+            "Subclavia Duo",
+            "Subclavia Trio",
+            "Subclavia Quad",
+            "port-a-cath",
+            "basilica"});
+            this.kathMet5.Location = new System.Drawing.Point(6, 527);
+            this.kathMet5.Name = "kathMet5";
+            this.kathMet5.Size = new System.Drawing.Size(108, 21);
+            this.kathMet5.TabIndex = 96;
+            // 
+            // kathMet4
+            // 
+            this.kathMet4.FormattingEnabled = true;
+            this.kathMet4.Items.AddRange(new object[] {
+            "Perifeer",
+            "Jugularis Duo",
+            "Jugularis Trio",
+            "Jugularis Quad",
+            "Subclavia Duo",
+            "Subclavia Trio",
+            "Subclavia Quad",
+            "port-a-cath",
+            "basilica"});
+            this.kathMet4.Location = new System.Drawing.Point(6, 494);
+            this.kathMet4.Name = "kathMet4";
+            this.kathMet4.Size = new System.Drawing.Size(108, 21);
+            this.kathMet4.TabIndex = 95;
+            // 
+            // kathMet3
+            // 
+            this.kathMet3.FormattingEnabled = true;
+            this.kathMet3.Items.AddRange(new object[] {
+            "Perifeer",
+            "Jugularis Duo",
+            "Jugularis Trio",
+            "Jugularis Quad",
+            "Subclavia Duo",
+            "Subclavia Trio",
+            "Subclavia Quad",
+            "port-a-cath",
+            "basilica"});
+            this.kathMet3.Location = new System.Drawing.Point(6, 468);
+            this.kathMet3.Name = "kathMet3";
+            this.kathMet3.Size = new System.Drawing.Size(108, 21);
+            this.kathMet3.TabIndex = 94;
+            // 
+            // kathMet2
+            // 
+            this.kathMet2.FormattingEnabled = true;
+            this.kathMet2.Items.AddRange(new object[] {
+            "Perifeer",
+            "Jugularis Duo",
+            "Jugularis Trio",
+            "Jugularis Quad",
+            "Subclavia Duo",
+            "Subclavia Trio",
+            "Subclavia Quad",
+            "port-a-cath",
+            "basilica"});
+            this.kathMet2.Location = new System.Drawing.Point(6, 441);
+            this.kathMet2.Name = "kathMet2";
+            this.kathMet2.Size = new System.Drawing.Size(108, 21);
+            this.kathMet2.TabIndex = 93;
+            // 
+            // kathMet1
+            // 
+            this.kathMet1.FormattingEnabled = true;
+            this.kathMet1.Items.AddRange(new object[] {
+            "Perifeer",
+            "Jugularis Duo",
+            "Jugularis Trio",
+            "Jugularis Quad",
+            "Subclavia Duo",
+            "Subclavia Trio",
+            "Subclavia Quad",
+            "port-a-cath",
+            "basilica"});
+            this.kathMet1.Location = new System.Drawing.Point(6, 417);
+            this.kathMet1.Name = "kathMet1";
+            this.kathMet1.Size = new System.Drawing.Size(108, 21);
+            this.kathMet1.TabIndex = 92;
+            // 
+            // dnrDrop
+            // 
+            this.dnrDrop.FormattingEnabled = true;
+            this.dnrDrop.Items.AddRange(new object[] {
+            0,
+            1,
+            2,
+            3});
+            this.dnrDrop.Location = new System.Drawing.Point(75, 257);
+            this.dnrDrop.Name = "dnrDrop";
+            this.dnrDrop.Size = new System.Drawing.Size(37, 21);
+            this.dnrDrop.TabIndex = 91;
             // 
             // niCardTromb
             // 
@@ -470,52 +737,6 @@
             this.KathDate1.Size = new System.Drawing.Size(100, 20);
             this.KathDate1.TabIndex = 57;
             // 
-            // kathMet5
-            // 
-            this.kathMet5.FormattingEnabled = true;
-            this.kathMet5.IntegralHeight = false;
-            this.kathMet5.Location = new System.Drawing.Point(6, 528);
-            this.kathMet5.Name = "kathMet5";
-            this.kathMet5.Size = new System.Drawing.Size(106, 20);
-            this.kathMet5.TabIndex = 56;
-            // 
-            // kathMet4
-            // 
-            this.kathMet4.FormattingEnabled = true;
-            this.kathMet4.IntegralHeight = false;
-            this.kathMet4.Location = new System.Drawing.Point(6, 495);
-            this.kathMet4.Name = "kathMet4";
-            this.kathMet4.Size = new System.Drawing.Size(106, 20);
-            this.kathMet4.TabIndex = 55;
-            // 
-            // kathMet3
-            // 
-            this.kathMet3.FormattingEnabled = true;
-            this.kathMet3.IntegralHeight = false;
-            this.kathMet3.Location = new System.Drawing.Point(6, 469);
-            this.kathMet3.Name = "kathMet3";
-            this.kathMet3.Size = new System.Drawing.Size(106, 20);
-            this.kathMet3.TabIndex = 54;
-            // 
-            // kathMet2
-            // 
-            this.kathMet2.FormattingEnabled = true;
-            this.kathMet2.IntegralHeight = false;
-            this.kathMet2.Location = new System.Drawing.Point(6, 443);
-            this.kathMet2.Name = "kathMet2";
-            this.kathMet2.Size = new System.Drawing.Size(106, 20);
-            this.kathMet2.TabIndex = 53;
-            // 
-            // kathMet1
-            // 
-            this.kathMet1.FormattingEnabled = true;
-            this.kathMet1.IntegralHeight = false;
-            this.kathMet1.Location = new System.Drawing.Point(6, 417);
-            this.kathMet1.Name = "kathMet1";
-            this.kathMet1.Size = new System.Drawing.Size(106, 20);
-            this.kathMet1.Sorted = true;
-            this.kathMet1.TabIndex = 52;
-            // 
             // label28
             // 
             this.label28.AutoSize = true;
@@ -582,35 +803,6 @@
             this.diagnose.Size = new System.Drawing.Size(673, 20);
             this.diagnose.TabIndex = 44;
             // 
-            // dnrBox
-            // 
-            this.dnrBox.FormattingEnabled = true;
-            this.dnrBox.Items.AddRange(new object[] {
-            0,
-            1,
-            2,
-            3});
-            this.dnrBox.Location = new System.Drawing.Point(75, 262);
-            this.dnrBox.Name = "dnrBox";
-            this.dnrBox.Size = new System.Drawing.Size(61, 17);
-            this.dnrBox.TabIndex = 43;
-            // 
-            // behandelArts
-            // 
-            this.behandelArts.FormattingEnabled = true;
-            this.behandelArts.Location = new System.Drawing.Point(599, 207);
-            this.behandelArts.Name = "behandelArts";
-            this.behandelArts.Size = new System.Drawing.Size(142, 17);
-            this.behandelArts.TabIndex = 42;
-            // 
-            // coordArts
-            // 
-            this.coordArts.FormattingEnabled = true;
-            this.coordArts.Location = new System.Drawing.Point(108, 207);
-            this.coordArts.Name = "coordArts";
-            this.coordArts.Size = new System.Drawing.Size(142, 17);
-            this.coordArts.TabIndex = 41;
-            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -632,7 +824,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(499, 208);
+            this.label21.Location = new System.Drawing.Point(463, 208);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(94, 13);
             this.label21.TabIndex = 38;
@@ -690,21 +882,21 @@
             this.textBox1.Size = new System.Drawing.Size(54, 20);
             this.textBox1.TabIndex = 31;
             // 
-            // comboBox2
+            // gaatNaarBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(465, 175);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(216, 21);
-            this.comboBox2.TabIndex = 30;
+            this.gaatNaarBox.FormattingEnabled = true;
+            this.gaatNaarBox.Location = new System.Drawing.Point(465, 175);
+            this.gaatNaarBox.Name = "gaatNaarBox";
+            this.gaatNaarBox.Size = new System.Drawing.Size(216, 21);
+            this.gaatNaarBox.TabIndex = 30;
             // 
-            // comboBox1
+            // komtVanBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(465, 140);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(216, 21);
-            this.comboBox1.TabIndex = 29;
+            this.komtVanBox.FormattingEnabled = true;
+            this.komtVanBox.Location = new System.Drawing.Point(465, 140);
+            this.komtVanBox.Name = "komtVanBox";
+            this.komtVanBox.Size = new System.Drawing.Size(216, 21);
+            this.komtVanBox.TabIndex = 29;
             // 
             // label18
             // 
@@ -947,6 +1139,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label55);
             this.tabPage2.Controls.Add(this.nivFlowPanel);
             this.tabPage2.Controls.Add(this.ademStopU3);
             this.tabPage2.Controls.Add(this.ademStartU3);
@@ -979,12 +1172,21 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(3, 120);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(56, 25);
+            this.label55.TabIndex = 60;
+            this.label55.Text = "NIV:";
+            // 
             // nivFlowPanel
             // 
-            this.nivFlowPanel.Controls.Add(this.panel1);
-            this.nivFlowPanel.Location = new System.Drawing.Point(0, 118);
+            this.nivFlowPanel.Location = new System.Drawing.Point(0, 148);
             this.nivFlowPanel.Name = "nivFlowPanel";
-            this.nivFlowPanel.Size = new System.Drawing.Size(756, 448);
+            this.nivFlowPanel.Size = new System.Drawing.Size(756, 418);
             this.nivFlowPanel.TabIndex = 59;
             // 
             // ademStopU3
@@ -1181,6 +1383,105 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label60);
+            this.tabPage3.Controls.Add(this.label59);
+            this.tabPage3.Controls.Add(this.label58);
+            this.tabPage3.Controls.Add(this.zorgbox);
+            this.tabPage3.Controls.Add(this.drainbox4);
+            this.tabPage3.Controls.Add(this.drainbox3);
+            this.tabPage3.Controls.Add(this.drainbox2);
+            this.tabPage3.Controls.Add(this.drainbox1);
+            this.tabPage3.Controls.Add(this.onderzoekbox4);
+            this.tabPage3.Controls.Add(this.onderzoekbox3);
+            this.tabPage3.Controls.Add(this.onderzoekbox2);
+            this.tabPage3.Controls.Add(this.onderzoekbox1);
+            this.tabPage3.Controls.Add(this.pdaMini);
+            this.tabPage3.Controls.Add(this.label57);
+            this.tabPage3.Controls.Add(this.label56);
+            this.tabPage3.Controls.Add(this.infuusMini3);
+            this.tabPage3.Controls.Add(this.infuusMini2);
+            this.tabPage3.Controls.Add(this.infuusMini1);
+            this.tabPage3.Controls.Add(this.pdaText);
+            this.tabPage3.Controls.Add(this.infuustext3);
+            this.tabPage3.Controls.Add(this.infuustext2);
+            this.tabPage3.Controls.Add(this.label44);
+            this.tabPage3.Controls.Add(this.infuustext1);
+            this.tabPage3.Controls.Add(this.label42);
+            this.tabPage3.Controls.Add(this.medicMeth20);
+            this.tabPage3.Controls.Add(this.medicper20);
+            this.tabPage3.Controls.Add(this.medicText20);
+            this.tabPage3.Controls.Add(this.medicMeth19);
+            this.tabPage3.Controls.Add(this.medicper19);
+            this.tabPage3.Controls.Add(this.medicText19);
+            this.tabPage3.Controls.Add(this.medicMeth18);
+            this.tabPage3.Controls.Add(this.medicper18);
+            this.tabPage3.Controls.Add(this.medicText18);
+            this.tabPage3.Controls.Add(this.medicMeth17);
+            this.tabPage3.Controls.Add(this.medicper17);
+            this.tabPage3.Controls.Add(this.medicText17);
+            this.tabPage3.Controls.Add(this.medicMeth16);
+            this.tabPage3.Controls.Add(this.medicper16);
+            this.tabPage3.Controls.Add(this.medicText16);
+            this.tabPage3.Controls.Add(this.medicMeth10);
+            this.tabPage3.Controls.Add(this.medicper10);
+            this.tabPage3.Controls.Add(this.medicText10);
+            this.tabPage3.Controls.Add(this.medicMeth9);
+            this.tabPage3.Controls.Add(this.medicper9);
+            this.tabPage3.Controls.Add(this.medicText9);
+            this.tabPage3.Controls.Add(this.medicMeth8);
+            this.tabPage3.Controls.Add(this.medicper8);
+            this.tabPage3.Controls.Add(this.medicText8);
+            this.tabPage3.Controls.Add(this.medicMeth7);
+            this.tabPage3.Controls.Add(this.medicper7);
+            this.tabPage3.Controls.Add(this.medicText7);
+            this.tabPage3.Controls.Add(this.medicMeth6);
+            this.tabPage3.Controls.Add(this.medicper6);
+            this.tabPage3.Controls.Add(this.medicText6);
+            this.tabPage3.Controls.Add(this.medicMeth15);
+            this.tabPage3.Controls.Add(this.medicper15);
+            this.tabPage3.Controls.Add(this.medicText15);
+            this.tabPage3.Controls.Add(this.medicMeth5);
+            this.tabPage3.Controls.Add(this.medicper5);
+            this.tabPage3.Controls.Add(this.medicText5);
+            this.tabPage3.Controls.Add(this.medicMeth14);
+            this.tabPage3.Controls.Add(this.medicper14);
+            this.tabPage3.Controls.Add(this.medicText14);
+            this.tabPage3.Controls.Add(this.medicMeth4);
+            this.tabPage3.Controls.Add(this.medicper4);
+            this.tabPage3.Controls.Add(this.medicText4);
+            this.tabPage3.Controls.Add(this.medicMeth13);
+            this.tabPage3.Controls.Add(this.medicper13);
+            this.tabPage3.Controls.Add(this.medicText13);
+            this.tabPage3.Controls.Add(this.medicMeth3);
+            this.tabPage3.Controls.Add(this.medicper3);
+            this.tabPage3.Controls.Add(this.medicText3);
+            this.tabPage3.Controls.Add(this.medicMeth12);
+            this.tabPage3.Controls.Add(this.medicper12);
+            this.tabPage3.Controls.Add(this.medicText12);
+            this.tabPage3.Controls.Add(this.medicMeth2);
+            this.tabPage3.Controls.Add(this.medicper2);
+            this.tabPage3.Controls.Add(this.medicText2);
+            this.tabPage3.Controls.Add(this.medicMeth11);
+            this.tabPage3.Controls.Add(this.medicper11);
+            this.tabPage3.Controls.Add(this.medicText11);
+            this.tabPage3.Controls.Add(this.medicMeth1);
+            this.tabPage3.Controls.Add(this.medicper1);
+            this.tabPage3.Controls.Add(this.label41);
+            this.tabPage3.Controls.Add(this.medicText1);
+            this.tabPage3.Controls.Add(this.zalvingCheckBox);
+            this.tabPage3.Controls.Add(this.KineCheckBox);
+            this.tabPage3.Controls.Add(this.Dieet);
+            this.tabPage3.Controls.Add(this.svCheckbox);
+            this.tabPage3.Controls.Add(this.teleCombo);
+            this.tabPage3.Controls.Add(this.bloedDrukBox);
+            this.tabPage3.Controls.Add(this.pressureBox);
+            this.tabPage3.Controls.Add(this.label40);
+            this.tabPage3.Controls.Add(this.label39);
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.ritmeBox);
+            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.label29);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -1189,17 +1490,843 @@
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // medicMeth1
+            // 
+            this.medicMeth1.FormattingEnabled = true;
+            this.medicMeth1.Location = new System.Drawing.Point(311, 60);
+            this.medicMeth1.Name = "medicMeth1";
+            this.medicMeth1.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth1.TabIndex = 24;
+            // 
+            // medicper1
+            // 
+            this.medicper1.FormattingEnabled = true;
+            this.medicper1.Location = new System.Drawing.Point(253, 60);
+            this.medicper1.Name = "medicper1";
+            this.medicper1.Size = new System.Drawing.Size(52, 21);
+            this.medicper1.TabIndex = 23;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(6, 33);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(121, 25);
+            this.label41.TabIndex = 22;
+            this.label41.Text = "Medicatie:";
+            // 
+            // medicText1
+            // 
+            this.medicText1.Location = new System.Drawing.Point(3, 60);
+            this.medicText1.Name = "medicText1";
+            this.medicText1.Size = new System.Drawing.Size(244, 20);
+            this.medicText1.TabIndex = 21;
+            // 
+            // zalvingCheckBox
+            // 
+            this.zalvingCheckBox.AutoSize = true;
+            this.zalvingCheckBox.Location = new System.Drawing.Point(692, 6);
+            this.zalvingCheckBox.Name = "zalvingCheckBox";
+            this.zalvingCheckBox.Size = new System.Drawing.Size(61, 17);
+            this.zalvingCheckBox.TabIndex = 20;
+            this.zalvingCheckBox.Text = "Zalving";
+            this.zalvingCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // KineCheckBox
+            // 
+            this.KineCheckBox.AutoSize = true;
+            this.KineCheckBox.Location = new System.Drawing.Point(643, 7);
+            this.KineCheckBox.Name = "KineCheckBox";
+            this.KineCheckBox.Size = new System.Drawing.Size(47, 17);
+            this.KineCheckBox.TabIndex = 19;
+            this.KineCheckBox.Text = "Kiné";
+            this.KineCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // Dieet
+            // 
+            this.Dieet.Location = new System.Drawing.Point(339, 4);
+            this.Dieet.Name = "Dieet";
+            this.Dieet.Size = new System.Drawing.Size(150, 20);
+            this.Dieet.TabIndex = 18;
+            // 
+            // svCheckbox
+            // 
+            this.svCheckbox.AutoSize = true;
+            this.svCheckbox.Location = new System.Drawing.Point(495, 6);
+            this.svCheckbox.Name = "svCheckbox";
+            this.svCheckbox.Size = new System.Drawing.Size(40, 17);
+            this.svCheckbox.TabIndex = 17;
+            this.svCheckbox.Text = "SV";
+            this.svCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // teleCombo
+            // 
+            this.teleCombo.FormattingEnabled = true;
+            this.teleCombo.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.teleCombo.Location = new System.Drawing.Point(606, 4);
+            this.teleCombo.Name = "teleCombo";
+            this.teleCombo.Size = new System.Drawing.Size(31, 21);
+            this.teleCombo.TabIndex = 16;
+            // 
+            // bloedDrukBox
+            // 
+            this.bloedDrukBox.Location = new System.Drawing.Point(253, 4);
+            this.bloedDrukBox.Name = "bloedDrukBox";
+            this.bloedDrukBox.Size = new System.Drawing.Size(39, 20);
+            this.bloedDrukBox.TabIndex = 15;
+            // 
+            // pressureBox
+            // 
+            this.pressureBox.Location = new System.Drawing.Point(176, 4);
+            this.pressureBox.Name = "pressureBox";
+            this.pressureBox.Size = new System.Drawing.Size(39, 20);
+            this.pressureBox.TabIndex = 14;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(541, 7);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(59, 13);
+            this.label40.TabIndex = 13;
+            this.label40.Text = "Telemetrie:";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(298, 7);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(35, 13);
+            this.label39.TabIndex = 12;
+            this.label39.Text = "Dieet:";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(222, 7);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(25, 13);
+            this.label32.TabIndex = 11;
+            this.label32.Text = "BD:";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(153, 7);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(17, 13);
+            this.label31.TabIndex = 10;
+            this.label31.Text = "P:";
+            // 
+            // ritmeBox
+            // 
+            this.ritmeBox.Location = new System.Drawing.Point(47, 4);
+            this.ritmeBox.Name = "ritmeBox";
+            this.ritmeBox.Size = new System.Drawing.Size(79, 20);
+            this.ritmeBox.TabIndex = 9;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(4, 7);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(37, 13);
+            this.label30.TabIndex = 8;
+            this.label30.Text = "Ritme:";
+            // 
+            // label29
+            // 
+            this.label29.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label29.Location = new System.Drawing.Point(1, 31);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(755, 2);
+            this.label29.TabIndex = 7;
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // panel1
+            // medicMeth11
             // 
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 0;
+            this.medicMeth11.FormattingEnabled = true;
+            this.medicMeth11.Location = new System.Drawing.Point(690, 60);
+            this.medicMeth11.Name = "medicMeth11";
+            this.medicMeth11.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth11.TabIndex = 27;
+            // 
+            // medicper11
+            // 
+            this.medicper11.FormattingEnabled = true;
+            this.medicper11.Location = new System.Drawing.Point(632, 60);
+            this.medicper11.Name = "medicper11";
+            this.medicper11.Size = new System.Drawing.Size(52, 21);
+            this.medicper11.TabIndex = 26;
+            // 
+            // medicText11
+            // 
+            this.medicText11.Location = new System.Drawing.Point(382, 60);
+            this.medicText11.Name = "medicText11";
+            this.medicText11.Size = new System.Drawing.Size(244, 20);
+            this.medicText11.TabIndex = 25;
+            // 
+            // medicMeth2
+            // 
+            this.medicMeth2.FormattingEnabled = true;
+            this.medicMeth2.Location = new System.Drawing.Point(311, 86);
+            this.medicMeth2.Name = "medicMeth2";
+            this.medicMeth2.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth2.TabIndex = 30;
+            // 
+            // medicper2
+            // 
+            this.medicper2.FormattingEnabled = true;
+            this.medicper2.Location = new System.Drawing.Point(253, 86);
+            this.medicper2.Name = "medicper2";
+            this.medicper2.Size = new System.Drawing.Size(52, 21);
+            this.medicper2.TabIndex = 29;
+            // 
+            // medicText2
+            // 
+            this.medicText2.Location = new System.Drawing.Point(3, 86);
+            this.medicText2.Name = "medicText2";
+            this.medicText2.Size = new System.Drawing.Size(244, 20);
+            this.medicText2.TabIndex = 28;
+            // 
+            // medicMeth12
+            // 
+            this.medicMeth12.FormattingEnabled = true;
+            this.medicMeth12.Location = new System.Drawing.Point(690, 86);
+            this.medicMeth12.Name = "medicMeth12";
+            this.medicMeth12.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth12.TabIndex = 33;
+            // 
+            // medicper12
+            // 
+            this.medicper12.FormattingEnabled = true;
+            this.medicper12.Location = new System.Drawing.Point(632, 86);
+            this.medicper12.Name = "medicper12";
+            this.medicper12.Size = new System.Drawing.Size(52, 21);
+            this.medicper12.TabIndex = 32;
+            // 
+            // medicText12
+            // 
+            this.medicText12.Location = new System.Drawing.Point(382, 86);
+            this.medicText12.Name = "medicText12";
+            this.medicText12.Size = new System.Drawing.Size(244, 20);
+            this.medicText12.TabIndex = 31;
+            // 
+            // medicMeth3
+            // 
+            this.medicMeth3.FormattingEnabled = true;
+            this.medicMeth3.Location = new System.Drawing.Point(311, 112);
+            this.medicMeth3.Name = "medicMeth3";
+            this.medicMeth3.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth3.TabIndex = 36;
+            // 
+            // medicper3
+            // 
+            this.medicper3.FormattingEnabled = true;
+            this.medicper3.Location = new System.Drawing.Point(253, 112);
+            this.medicper3.Name = "medicper3";
+            this.medicper3.Size = new System.Drawing.Size(52, 21);
+            this.medicper3.TabIndex = 35;
+            // 
+            // medicText3
+            // 
+            this.medicText3.Location = new System.Drawing.Point(3, 112);
+            this.medicText3.Name = "medicText3";
+            this.medicText3.Size = new System.Drawing.Size(244, 20);
+            this.medicText3.TabIndex = 34;
+            // 
+            // medicMeth13
+            // 
+            this.medicMeth13.FormattingEnabled = true;
+            this.medicMeth13.Location = new System.Drawing.Point(690, 113);
+            this.medicMeth13.Name = "medicMeth13";
+            this.medicMeth13.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth13.TabIndex = 39;
+            // 
+            // medicper13
+            // 
+            this.medicper13.FormattingEnabled = true;
+            this.medicper13.Location = new System.Drawing.Point(632, 113);
+            this.medicper13.Name = "medicper13";
+            this.medicper13.Size = new System.Drawing.Size(52, 21);
+            this.medicper13.TabIndex = 38;
+            // 
+            // medicText13
+            // 
+            this.medicText13.Location = new System.Drawing.Point(382, 113);
+            this.medicText13.Name = "medicText13";
+            this.medicText13.Size = new System.Drawing.Size(244, 20);
+            this.medicText13.TabIndex = 37;
+            // 
+            // medicMeth4
+            // 
+            this.medicMeth4.FormattingEnabled = true;
+            this.medicMeth4.Location = new System.Drawing.Point(311, 138);
+            this.medicMeth4.Name = "medicMeth4";
+            this.medicMeth4.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth4.TabIndex = 42;
+            // 
+            // medicper4
+            // 
+            this.medicper4.FormattingEnabled = true;
+            this.medicper4.Location = new System.Drawing.Point(253, 138);
+            this.medicper4.Name = "medicper4";
+            this.medicper4.Size = new System.Drawing.Size(52, 21);
+            this.medicper4.TabIndex = 41;
+            // 
+            // medicText4
+            // 
+            this.medicText4.Location = new System.Drawing.Point(3, 138);
+            this.medicText4.Name = "medicText4";
+            this.medicText4.Size = new System.Drawing.Size(244, 20);
+            this.medicText4.TabIndex = 40;
+            // 
+            // medicMeth14
+            // 
+            this.medicMeth14.FormattingEnabled = true;
+            this.medicMeth14.Location = new System.Drawing.Point(690, 139);
+            this.medicMeth14.Name = "medicMeth14";
+            this.medicMeth14.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth14.TabIndex = 45;
+            // 
+            // medicper14
+            // 
+            this.medicper14.FormattingEnabled = true;
+            this.medicper14.Location = new System.Drawing.Point(632, 139);
+            this.medicper14.Name = "medicper14";
+            this.medicper14.Size = new System.Drawing.Size(52, 21);
+            this.medicper14.TabIndex = 44;
+            // 
+            // medicText14
+            // 
+            this.medicText14.Location = new System.Drawing.Point(382, 139);
+            this.medicText14.Name = "medicText14";
+            this.medicText14.Size = new System.Drawing.Size(244, 20);
+            this.medicText14.TabIndex = 43;
+            // 
+            // medicMeth5
+            // 
+            this.medicMeth5.FormattingEnabled = true;
+            this.medicMeth5.Location = new System.Drawing.Point(311, 164);
+            this.medicMeth5.Name = "medicMeth5";
+            this.medicMeth5.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth5.TabIndex = 48;
+            // 
+            // medicper5
+            // 
+            this.medicper5.FormattingEnabled = true;
+            this.medicper5.Location = new System.Drawing.Point(253, 164);
+            this.medicper5.Name = "medicper5";
+            this.medicper5.Size = new System.Drawing.Size(52, 21);
+            this.medicper5.TabIndex = 47;
+            // 
+            // medicText5
+            // 
+            this.medicText5.Location = new System.Drawing.Point(3, 164);
+            this.medicText5.Name = "medicText5";
+            this.medicText5.Size = new System.Drawing.Size(244, 20);
+            this.medicText5.TabIndex = 46;
+            // 
+            // medicMeth15
+            // 
+            this.medicMeth15.FormattingEnabled = true;
+            this.medicMeth15.Location = new System.Drawing.Point(690, 165);
+            this.medicMeth15.Name = "medicMeth15";
+            this.medicMeth15.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth15.TabIndex = 51;
+            // 
+            // medicper15
+            // 
+            this.medicper15.FormattingEnabled = true;
+            this.medicper15.Location = new System.Drawing.Point(632, 165);
+            this.medicper15.Name = "medicper15";
+            this.medicper15.Size = new System.Drawing.Size(52, 21);
+            this.medicper15.TabIndex = 50;
+            // 
+            // medicText15
+            // 
+            this.medicText15.Location = new System.Drawing.Point(382, 165);
+            this.medicText15.Name = "medicText15";
+            this.medicText15.Size = new System.Drawing.Size(244, 20);
+            this.medicText15.TabIndex = 49;
+            // 
+            // medicMeth10
+            // 
+            this.medicMeth10.FormattingEnabled = true;
+            this.medicMeth10.Location = new System.Drawing.Point(311, 294);
+            this.medicMeth10.Name = "medicMeth10";
+            this.medicMeth10.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth10.TabIndex = 66;
+            // 
+            // medicper10
+            // 
+            this.medicper10.FormattingEnabled = true;
+            this.medicper10.Location = new System.Drawing.Point(253, 294);
+            this.medicper10.Name = "medicper10";
+            this.medicper10.Size = new System.Drawing.Size(52, 21);
+            this.medicper10.TabIndex = 65;
+            // 
+            // medicText10
+            // 
+            this.medicText10.Location = new System.Drawing.Point(3, 294);
+            this.medicText10.Name = "medicText10";
+            this.medicText10.Size = new System.Drawing.Size(244, 20);
+            this.medicText10.TabIndex = 64;
+            // 
+            // medicMeth9
+            // 
+            this.medicMeth9.FormattingEnabled = true;
+            this.medicMeth9.Location = new System.Drawing.Point(311, 268);
+            this.medicMeth9.Name = "medicMeth9";
+            this.medicMeth9.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth9.TabIndex = 63;
+            // 
+            // medicper9
+            // 
+            this.medicper9.FormattingEnabled = true;
+            this.medicper9.Location = new System.Drawing.Point(253, 268);
+            this.medicper9.Name = "medicper9";
+            this.medicper9.Size = new System.Drawing.Size(52, 21);
+            this.medicper9.TabIndex = 62;
+            // 
+            // medicText9
+            // 
+            this.medicText9.Location = new System.Drawing.Point(3, 268);
+            this.medicText9.Name = "medicText9";
+            this.medicText9.Size = new System.Drawing.Size(244, 20);
+            this.medicText9.TabIndex = 61;
+            // 
+            // medicMeth8
+            // 
+            this.medicMeth8.FormattingEnabled = true;
+            this.medicMeth8.Location = new System.Drawing.Point(311, 242);
+            this.medicMeth8.Name = "medicMeth8";
+            this.medicMeth8.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth8.TabIndex = 60;
+            // 
+            // medicper8
+            // 
+            this.medicper8.FormattingEnabled = true;
+            this.medicper8.Location = new System.Drawing.Point(253, 242);
+            this.medicper8.Name = "medicper8";
+            this.medicper8.Size = new System.Drawing.Size(52, 21);
+            this.medicper8.TabIndex = 59;
+            // 
+            // medicText8
+            // 
+            this.medicText8.Location = new System.Drawing.Point(3, 242);
+            this.medicText8.Name = "medicText8";
+            this.medicText8.Size = new System.Drawing.Size(244, 20);
+            this.medicText8.TabIndex = 58;
+            // 
+            // medicMeth7
+            // 
+            this.medicMeth7.FormattingEnabled = true;
+            this.medicMeth7.Location = new System.Drawing.Point(311, 216);
+            this.medicMeth7.Name = "medicMeth7";
+            this.medicMeth7.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth7.TabIndex = 57;
+            // 
+            // medicper7
+            // 
+            this.medicper7.FormattingEnabled = true;
+            this.medicper7.Location = new System.Drawing.Point(253, 216);
+            this.medicper7.Name = "medicper7";
+            this.medicper7.Size = new System.Drawing.Size(52, 21);
+            this.medicper7.TabIndex = 56;
+            // 
+            // medicText7
+            // 
+            this.medicText7.Location = new System.Drawing.Point(3, 216);
+            this.medicText7.Name = "medicText7";
+            this.medicText7.Size = new System.Drawing.Size(244, 20);
+            this.medicText7.TabIndex = 55;
+            // 
+            // medicMeth6
+            // 
+            this.medicMeth6.FormattingEnabled = true;
+            this.medicMeth6.Location = new System.Drawing.Point(311, 190);
+            this.medicMeth6.Name = "medicMeth6";
+            this.medicMeth6.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth6.TabIndex = 54;
+            // 
+            // medicper6
+            // 
+            this.medicper6.FormattingEnabled = true;
+            this.medicper6.Location = new System.Drawing.Point(253, 190);
+            this.medicper6.Name = "medicper6";
+            this.medicper6.Size = new System.Drawing.Size(52, 21);
+            this.medicper6.TabIndex = 53;
+            // 
+            // medicText6
+            // 
+            this.medicText6.Location = new System.Drawing.Point(3, 190);
+            this.medicText6.Name = "medicText6";
+            this.medicText6.Size = new System.Drawing.Size(244, 20);
+            this.medicText6.TabIndex = 52;
+            // 
+            // medicMeth20
+            // 
+            this.medicMeth20.FormattingEnabled = true;
+            this.medicMeth20.Location = new System.Drawing.Point(690, 295);
+            this.medicMeth20.Name = "medicMeth20";
+            this.medicMeth20.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth20.TabIndex = 81;
+            // 
+            // medicper20
+            // 
+            this.medicper20.FormattingEnabled = true;
+            this.medicper20.Location = new System.Drawing.Point(632, 295);
+            this.medicper20.Name = "medicper20";
+            this.medicper20.Size = new System.Drawing.Size(52, 21);
+            this.medicper20.TabIndex = 80;
+            // 
+            // medicText20
+            // 
+            this.medicText20.Location = new System.Drawing.Point(382, 295);
+            this.medicText20.Name = "medicText20";
+            this.medicText20.Size = new System.Drawing.Size(244, 20);
+            this.medicText20.TabIndex = 79;
+            // 
+            // medicMeth19
+            // 
+            this.medicMeth19.FormattingEnabled = true;
+            this.medicMeth19.Location = new System.Drawing.Point(690, 269);
+            this.medicMeth19.Name = "medicMeth19";
+            this.medicMeth19.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth19.TabIndex = 78;
+            // 
+            // medicper19
+            // 
+            this.medicper19.FormattingEnabled = true;
+            this.medicper19.Location = new System.Drawing.Point(632, 269);
+            this.medicper19.Name = "medicper19";
+            this.medicper19.Size = new System.Drawing.Size(52, 21);
+            this.medicper19.TabIndex = 77;
+            // 
+            // medicText19
+            // 
+            this.medicText19.Location = new System.Drawing.Point(382, 269);
+            this.medicText19.Name = "medicText19";
+            this.medicText19.Size = new System.Drawing.Size(244, 20);
+            this.medicText19.TabIndex = 76;
+            // 
+            // medicMeth18
+            // 
+            this.medicMeth18.FormattingEnabled = true;
+            this.medicMeth18.Location = new System.Drawing.Point(690, 243);
+            this.medicMeth18.Name = "medicMeth18";
+            this.medicMeth18.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth18.TabIndex = 75;
+            // 
+            // medicper18
+            // 
+            this.medicper18.FormattingEnabled = true;
+            this.medicper18.Location = new System.Drawing.Point(632, 243);
+            this.medicper18.Name = "medicper18";
+            this.medicper18.Size = new System.Drawing.Size(52, 21);
+            this.medicper18.TabIndex = 74;
+            // 
+            // medicText18
+            // 
+            this.medicText18.Location = new System.Drawing.Point(382, 243);
+            this.medicText18.Name = "medicText18";
+            this.medicText18.Size = new System.Drawing.Size(244, 20);
+            this.medicText18.TabIndex = 73;
+            // 
+            // medicMeth17
+            // 
+            this.medicMeth17.FormattingEnabled = true;
+            this.medicMeth17.Location = new System.Drawing.Point(690, 217);
+            this.medicMeth17.Name = "medicMeth17";
+            this.medicMeth17.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth17.TabIndex = 72;
+            // 
+            // medicper17
+            // 
+            this.medicper17.FormattingEnabled = true;
+            this.medicper17.Location = new System.Drawing.Point(632, 217);
+            this.medicper17.Name = "medicper17";
+            this.medicper17.Size = new System.Drawing.Size(52, 21);
+            this.medicper17.TabIndex = 71;
+            // 
+            // medicText17
+            // 
+            this.medicText17.Location = new System.Drawing.Point(382, 217);
+            this.medicText17.Name = "medicText17";
+            this.medicText17.Size = new System.Drawing.Size(244, 20);
+            this.medicText17.TabIndex = 70;
+            // 
+            // medicMeth16
+            // 
+            this.medicMeth16.FormattingEnabled = true;
+            this.medicMeth16.Location = new System.Drawing.Point(690, 191);
+            this.medicMeth16.Name = "medicMeth16";
+            this.medicMeth16.Size = new System.Drawing.Size(55, 21);
+            this.medicMeth16.TabIndex = 69;
+            // 
+            // medicper16
+            // 
+            this.medicper16.FormattingEnabled = true;
+            this.medicper16.Location = new System.Drawing.Point(632, 191);
+            this.medicper16.Name = "medicper16";
+            this.medicper16.Size = new System.Drawing.Size(52, 21);
+            this.medicper16.TabIndex = 68;
+            // 
+            // medicText16
+            // 
+            this.medicText16.Location = new System.Drawing.Point(382, 191);
+            this.medicText16.Name = "medicText16";
+            this.medicText16.Size = new System.Drawing.Size(244, 20);
+            this.medicText16.TabIndex = 67;
+            // 
+            // label42
+            // 
+            this.label42.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label42.Location = new System.Drawing.Point(-2, 319);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(755, 2);
+            this.label42.TabIndex = 82;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label61);
+            this.tabPage4.Controls.Add(this.verpleegkundigeBox);
+            this.tabPage4.Controls.Add(this.VerslagBox);
+            this.tabPage4.Controls.Add(this.label62);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(756, 566);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // infuustext1
+            // 
+            this.infuustext1.Location = new System.Drawing.Point(3, 350);
+            this.infuustext1.Name = "infuustext1";
+            this.infuustext1.Size = new System.Drawing.Size(289, 20);
+            this.infuustext1.TabIndex = 83;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(6, 322);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(83, 25);
+            this.label44.TabIndex = 84;
+            this.label44.Text = "Infuus:";
+            // 
+            // infuustext2
+            // 
+            this.infuustext2.Location = new System.Drawing.Point(3, 376);
+            this.infuustext2.Name = "infuustext2";
+            this.infuustext2.Size = new System.Drawing.Size(289, 20);
+            this.infuustext2.TabIndex = 85;
+            // 
+            // infuustext3
+            // 
+            this.infuustext3.Location = new System.Drawing.Point(3, 402);
+            this.infuustext3.Name = "infuustext3";
+            this.infuustext3.Size = new System.Drawing.Size(289, 20);
+            this.infuustext3.TabIndex = 86;
+            // 
+            // pdaText
+            // 
+            this.pdaText.Location = new System.Drawing.Point(382, 376);
+            this.pdaText.Name = "pdaText";
+            this.pdaText.Size = new System.Drawing.Size(244, 20);
+            this.pdaText.TabIndex = 87;
+            // 
+            // infuusMini1
+            // 
+            this.infuusMini1.Location = new System.Drawing.Point(301, 350);
+            this.infuusMini1.Name = "infuusMini1";
+            this.infuusMini1.Size = new System.Drawing.Size(65, 20);
+            this.infuusMini1.TabIndex = 88;
+            // 
+            // infuusMini2
+            // 
+            this.infuusMini2.Location = new System.Drawing.Point(301, 376);
+            this.infuusMini2.Name = "infuusMini2";
+            this.infuusMini2.Size = new System.Drawing.Size(65, 20);
+            this.infuusMini2.TabIndex = 89;
+            // 
+            // infuusMini3
+            // 
+            this.infuusMini3.Location = new System.Drawing.Point(301, 402);
+            this.infuusMini3.Name = "infuusMini3";
+            this.infuusMini3.Size = new System.Drawing.Size(65, 20);
+            this.infuusMini3.TabIndex = 90;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(379, 357);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(65, 13);
+            this.label56.TabIndex = 91;
+            this.label56.Text = "PDA/PCEA:";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(629, 379);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(18, 13);
+            this.label57.TabIndex = 92;
+            this.label57.Text = "@";
+            // 
+            // pdaMini
+            // 
+            this.pdaMini.Location = new System.Drawing.Point(653, 376);
+            this.pdaMini.Name = "pdaMini";
+            this.pdaMini.Size = new System.Drawing.Size(77, 20);
+            this.pdaMini.TabIndex = 93;
+            // 
+            // onderzoekbox1
+            // 
+            this.onderzoekbox1.Location = new System.Drawing.Point(569, 458);
+            this.onderzoekbox1.Name = "onderzoekbox1";
+            this.onderzoekbox1.Size = new System.Drawing.Size(184, 20);
+            this.onderzoekbox1.TabIndex = 94;
+            // 
+            // onderzoekbox2
+            // 
+            this.onderzoekbox2.Location = new System.Drawing.Point(569, 484);
+            this.onderzoekbox2.Name = "onderzoekbox2";
+            this.onderzoekbox2.Size = new System.Drawing.Size(184, 20);
+            this.onderzoekbox2.TabIndex = 95;
+            // 
+            // onderzoekbox4
+            // 
+            this.onderzoekbox4.Location = new System.Drawing.Point(569, 535);
+            this.onderzoekbox4.Name = "onderzoekbox4";
+            this.onderzoekbox4.Size = new System.Drawing.Size(184, 20);
+            this.onderzoekbox4.TabIndex = 97;
+            // 
+            // onderzoekbox3
+            // 
+            this.onderzoekbox3.Location = new System.Drawing.Point(569, 509);
+            this.onderzoekbox3.Name = "onderzoekbox3";
+            this.onderzoekbox3.Size = new System.Drawing.Size(184, 20);
+            this.onderzoekbox3.TabIndex = 96;
+            // 
+            // drainbox4
+            // 
+            this.drainbox4.Location = new System.Drawing.Point(339, 535);
+            this.drainbox4.Name = "drainbox4";
+            this.drainbox4.Size = new System.Drawing.Size(184, 20);
+            this.drainbox4.TabIndex = 101;
+            // 
+            // drainbox3
+            // 
+            this.drainbox3.Location = new System.Drawing.Point(339, 509);
+            this.drainbox3.Name = "drainbox3";
+            this.drainbox3.Size = new System.Drawing.Size(184, 20);
+            this.drainbox3.TabIndex = 100;
+            // 
+            // drainbox2
+            // 
+            this.drainbox2.Location = new System.Drawing.Point(339, 484);
+            this.drainbox2.Name = "drainbox2";
+            this.drainbox2.Size = new System.Drawing.Size(184, 20);
+            this.drainbox2.TabIndex = 99;
+            // 
+            // drainbox1
+            // 
+            this.drainbox1.Location = new System.Drawing.Point(339, 458);
+            this.drainbox1.Name = "drainbox1";
+            this.drainbox1.Size = new System.Drawing.Size(184, 20);
+            this.drainbox1.TabIndex = 98;
+            // 
+            // zorgbox
+            // 
+            this.zorgbox.Location = new System.Drawing.Point(3, 458);
+            this.zorgbox.Multiline = true;
+            this.zorgbox.Name = "zorgbox";
+            this.zorgbox.Size = new System.Drawing.Size(302, 97);
+            this.zorgbox.TabIndex = 102;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Location = new System.Drawing.Point(6, 425);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(93, 25);
+            this.label58.TabIndex = 103;
+            this.label58.Text = "Zorgen:";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(334, 425);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(87, 25);
+            this.label59.TabIndex = 104;
+            this.label59.Text = "Drains:";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.Location = new System.Drawing.Point(564, 425);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(133, 25);
+            this.label60.TabIndex = 105;
+            this.label60.Text = "Onderzoek:";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(6, 3);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(99, 25);
+            this.label62.TabIndex = 23;
+            this.label62.Text = "Verslag:";
+            // 
+            // VerslagBox
+            // 
+            this.VerslagBox.Location = new System.Drawing.Point(3, 48);
+            this.VerslagBox.Multiline = true;
+            this.VerslagBox.Name = "VerslagBox";
+            this.VerslagBox.Size = new System.Drawing.Size(747, 512);
+            this.VerslagBox.TabIndex = 35;
+            // 
+            // verpleegkundigeBox
+            // 
+            this.verpleegkundigeBox.FormattingEnabled = true;
+            this.verpleegkundigeBox.Location = new System.Drawing.Point(389, 9);
+            this.verpleegkundigeBox.Name = "verpleegkundigeBox";
+            this.verpleegkundigeBox.Size = new System.Drawing.Size(121, 21);
+            this.verpleegkundigeBox.TabIndex = 36;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(293, 12);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(90, 13);
+            this.label61.TabIndex = 37;
+            this.label61.Text = "Verpleegkundige:";
             // 
             // Form1
             // 
@@ -1214,7 +2341,10 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.nivFlowPanel.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1247,8 +2377,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox gaatNaarBox;
+        private System.Windows.Forms.ComboBox komtVanBox;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
@@ -1263,9 +2393,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox diagnose;
-        private System.Windows.Forms.ListBox dnrBox;
-        private System.Windows.Forms.ListBox behandelArts;
-        private System.Windows.Forms.ListBox coordArts;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
@@ -1275,11 +2402,6 @@
         private System.Windows.Forms.TextBox anamnese;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.ListBox kathMet5;
-        private System.Windows.Forms.ListBox kathMet4;
-        private System.Windows.Forms.ListBox kathMet3;
-        private System.Windows.Forms.ListBox kathMet2;
-        private System.Windows.Forms.ListBox kathMet1;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox kathDate5;
         private System.Windows.Forms.TextBox kathDate2;
@@ -1331,7 +2453,121 @@
         private System.Windows.Forms.CheckBox tempPm;
         private System.Windows.Forms.CheckBox pmImp;
         public System.Windows.Forms.FlowLayoutPanel nivFlowPanel;
-        private System.Windows.Forms.Panel panel1;
+        
+       
+        private System.Windows.Forms.Label label55;
+        private ComboBox dnrDrop;
+        private ComboBox kathMet5;
+        private ComboBox kathMet4;
+        private ComboBox kathMet3;
+        private ComboBox kathMet2;
+        private ComboBox kathMet1;
+        private ComboBox behandArts;
+        private ComboBox coordArts;
+        private TextBox bloedDrukBox;
+        private TextBox pressureBox;
+        private Label label40;
+        private Label label39;
+        private Label label32;
+        private Label label31;
+        private TextBox ritmeBox;
+        private Label label30;
+        private Label label29;
+        private CheckBox zalvingCheckBox;
+        private CheckBox KineCheckBox;
+        private TextBox Dieet;
+        private CheckBox svCheckbox;
+        private ComboBox teleCombo;
+        private ComboBox medicMeth1;
+        private ComboBox medicper1;
+        private Label label41;
+        private TextBox medicText1;
+        private ComboBox medicMeth20;
+        private ComboBox medicper20;
+        private TextBox medicText20;
+        private ComboBox medicMeth19;
+        private ComboBox medicper19;
+        private TextBox medicText19;
+        private ComboBox medicMeth18;
+        private ComboBox medicper18;
+        private TextBox medicText18;
+        private ComboBox medicMeth17;
+        private ComboBox medicper17;
+        private TextBox medicText17;
+        private ComboBox medicMeth16;
+        private ComboBox medicper16;
+        private TextBox medicText16;
+        private ComboBox medicMeth10;
+        private ComboBox medicper10;
+        private TextBox medicText10;
+        private ComboBox medicMeth9;
+        private ComboBox medicper9;
+        private TextBox medicText9;
+        private ComboBox medicMeth8;
+        private ComboBox medicper8;
+        private TextBox medicText8;
+        private ComboBox medicMeth7;
+        private ComboBox medicper7;
+        private TextBox medicText7;
+        private ComboBox medicMeth6;
+        private ComboBox medicper6;
+        private TextBox medicText6;
+        private ComboBox medicMeth15;
+        private ComboBox medicper15;
+        private TextBox medicText15;
+        private ComboBox medicMeth5;
+        private ComboBox medicper5;
+        private TextBox medicText5;
+        private ComboBox medicMeth14;
+        private ComboBox medicper14;
+        private TextBox medicText14;
+        private ComboBox medicMeth4;
+        private ComboBox medicper4;
+        private TextBox medicText4;
+        private ComboBox medicMeth13;
+        private ComboBox medicper13;
+        private TextBox medicText13;
+        private ComboBox medicMeth3;
+        private ComboBox medicper3;
+        private TextBox medicText3;
+        private ComboBox medicMeth12;
+        private ComboBox medicper12;
+        private TextBox medicText12;
+        private ComboBox medicMeth2;
+        private ComboBox medicper2;
+        private TextBox medicText2;
+        private ComboBox medicMeth11;
+        private ComboBox medicper11;
+        private TextBox medicText11;
+        private Label label57;
+        private Label label56;
+        private TextBox infuusMini3;
+        private TextBox infuusMini2;
+        private TextBox infuusMini1;
+        private TextBox pdaText;
+        private TextBox infuustext3;
+        private TextBox infuustext2;
+        private Label label44;
+        private TextBox infuustext1;
+        private Label label42;
+        private TabPage tabPage4;
+        private Label label60;
+        private Label label59;
+        private Label label58;
+        private TextBox zorgbox;
+        private TextBox drainbox4;
+        private TextBox drainbox3;
+        private TextBox drainbox2;
+        private TextBox drainbox1;
+        private TextBox onderzoekbox4;
+        private TextBox onderzoekbox3;
+        private TextBox onderzoekbox2;
+        private TextBox onderzoekbox1;
+        private TextBox pdaMini;
+        private TextBox VerslagBox;
+        private Label label62;
+        private Label label61;
+        private ComboBox verpleegkundigeBox;
     }
 }
 

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace logic
 {
-    class GUIlogic
+    public class Katheter
     {
+        string kathType;
+        DateTime kathDatum;
     }
 }
