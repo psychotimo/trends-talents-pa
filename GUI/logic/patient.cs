@@ -65,9 +65,9 @@ namespace logic
         private string pceaUitleg;
         private string PceaUitlegAt;
         private bool drains;
-        private List<string> drainList;
+        private List<Drains> drainList;
         private bool onderzoek;
-        private List<string> onderzoekList;
+        private List<Onderzoek> onderzoekList;
         private string zorgen;
         private string verpleegkundige;
         private string verslag;
@@ -136,7 +136,13 @@ namespace logic
 
             set
             {
-                geboortedatum = value;
+                if (value == null)
+                {
+                    geboortedatum = new DateTime(1, 1, 1);
+                }
+                else {
+                    geboortedatum = value;
+                }
             }
         }
 
@@ -175,7 +181,13 @@ namespace logic
 
             set
             {
-                tijdOpname = value;
+                if (value == null)
+                {
+                    tijdOpname = new DateTime(1, 1, 1);
+                }
+                else {
+                    tijdOpname = value;
+                }
             }
         }
 
@@ -188,7 +200,14 @@ namespace logic
 
             set
             {
-                tijdOntslag = value;
+                if (value == null)
+                {
+                    tijdOntslag = new DateTime(1, 1, 1);
+                }
+                else {
+                    tijdOntslag = value;
+                }
+                
             }
         }
 
@@ -475,7 +494,13 @@ namespace logic
 
             set
             {
-                thoraxdrain = value;
+                if (value == null)
+                {
+                    thoraxdrain = new DateTime(1, 1, 1);
+                }
+                else {
+                    thoraxdrain = value;
+                }
             }
         }
 
@@ -488,7 +513,13 @@ namespace logic
 
             set
             {
-                maagsonde = value;
+                if (value == null)
+                {
+                    maagsonde = new DateTime(1, 1, 1);
+                }
+                else {
+                    maagsonde = value;
+                }
             }
         }
 
@@ -501,7 +532,13 @@ namespace logic
 
             set
             {
-                blaassonde = value;
+                if (value == null)
+                {
+                    blaassonde = new DateTime(1, 1, 1);
+                }
+                else {
+                    blaassonde = value;
+                }
             }
         }
 
@@ -514,7 +551,13 @@ namespace logic
 
             set
             {
-                pda = value;
+                if (value == null)
+                {
+                    pda = new DateTime(1, 1, 1);
+                }
+                else {
+                    pda = value;
+                }
             }
         }
 
@@ -527,7 +570,13 @@ namespace logic
 
             set
             {
-                pcea = value;
+                if (value == null)
+                {
+                    pcea = new DateTime(1, 1, 1);
+                }
+                else {
+                    pcea = value;
+                }
             }
         }
 
@@ -540,7 +589,13 @@ namespace logic
 
             set
             {
-                pcia = value;
+                if (value == null)
+                {
+                    pcia = new DateTime(1, 1, 1);
+                }
+                else {
+                    pcia = value;
+                }
             }
         }
 
@@ -791,7 +846,7 @@ namespace logic
             }
         }
 
-        public List<string> DrainList
+        public List<Drains> DrainList
         {
             get
             {
@@ -817,7 +872,7 @@ namespace logic
             }
         }
 
-        public List<string> OnderzoekList
+        public List<Onderzoek> OnderzoekList
         {
             get
             {

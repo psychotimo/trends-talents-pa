@@ -8,17 +8,68 @@ namespace logic
 {
     public class NIV
     {
-        public int id;
-        public int patientID;
-        public DateTime start;
-        public DateTime stop;
+        private int id;
+        private int patientID;
+        private DateTime start;
+        private DateTime stop;
 
-        public NIV(int id,int patid,DateTime sta,DateTime sto)
+        public int Id
         {
-            this.id = id;
-            this.patientID = patid;
-            this.start = sta;
-            this.stop = sto;
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public int PatientID
+        {
+            get
+            {
+                return patientID;
+            }
+
+            set
+            {
+                patientID = value;
+            }
+        }
+
+        public DateTime Start
+        {
+            get
+            {
+                return start;
+            }
+
+            set
+            {
+                start = value;
+            }
+        }
+
+        public DateTime Stop
+        {
+            get
+            {
+                return stop;
+            }
+
+            set
+            {
+                stop = value;
+            }
+        }
+
+        public NIV(DateTime sta,DateTime sto)
+        {
+           
+            this.Start = sta;
+            this.Stop = sto;
         }
 
     }
