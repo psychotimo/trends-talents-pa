@@ -287,8 +287,35 @@ namespace logic
                 {
                     woonplaatsenlijst.Add(reader.GetString(1));
                 }
+                reader.Close();
                 dbConn.closeConn();
                 return woonplaatsenlijst;
+
+            }
+            catch (MySqlException ex)
+            {
+                throw new FieldAccessException("Error: " + ex.ToString());
+            }
+
+        }
+
+        public List<string> getVerpleegkundigen()
+        {
+
+            try
+            {
+                List<string> vpkLijst = new List<string>();
+                MySqlDataReader reader = null;
+                string stmt = "SELECT * FROM verpleegkundige ";
+                MySqlCommand cmd = new MySqlCommand(stmt, dbConn.getConn());
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    vpkLijst.Add(reader.GetString(1));
+                }
+                reader.Close();
+                dbConn.closeConn();
+                return vpkLijst;
 
             }
             catch (MySqlException ex)
@@ -349,15 +376,7 @@ namespace logic
                         insertcommand.ExecuteNonQuery();
                     }
                 }
-                if (pat.Drains)
-                {
-                    foreach (Drains drain in pat.DrainList)
-                    {
-                        insertcommand.Parameters.Clear();
-                        insertcommand.CommandText = "insert into drains VALUES (null,'" + newID + "','" + drain.DrainInfo + "');";
-                        insertcommand.ExecuteNonQuery();
-                    }
-                }
+               
                 if (pat.Infuus)
                 {
                     foreach (Infuus fuus in pat.InfuusList)
@@ -410,6 +429,7 @@ namespace logic
                     }
                 }
                 MySqlDataReader reader;
+                #region add woonplaats if not already in list
                 insertcommand.Parameters.Clear();
                 insertcommand.CommandText = "select * from woonplaats";
                 reader = insertcommand.ExecuteReader();
@@ -421,13 +441,37 @@ namespace logic
                         alreadyInList = true;
                     }
                 }
+                reader.Close();
                 if (!alreadyInList)
                 {
                     insertcommand.Parameters.Clear();
                     insertcommand.CommandText = "insert into woonplaats values(null,'" + pat.Woonplaats + "');";
                     insertcommand.ExecuteNonQuery();
+                } 
+                #endregion
+
+                #region add vpk if not already in list
+                insertcommand.Parameters.Clear();
+                insertcommand.CommandText = "select * from verpleegkundige";
+                reader = insertcommand.ExecuteReader();
+                bool vpkAlreadyInList = false;
+                while (reader.Read())
+                {
+                    if (reader.GetString(1) == pat.Woonplaats)
+                    {
+                        vpkAlreadyInList = true;
+                    }
+                }
+                reader.Close();
+                if (!vpkAlreadyInList)
+                {
+                    insertcommand.Parameters.Clear();
+                    insertcommand.CommandText = "insert into verpleegkundige values(null,'" + pat.Verpleegkundige + "');";
+                    insertcommand.ExecuteNonQuery();
                 }
 
+
+                #endregion
                 dbConn.closeConn();
 
 
@@ -750,6 +794,7 @@ namespace logic
             
 
             MySqlDataReader woonplaatsreader;
+            #region add woonplaats if not in list
             updatecommand.Parameters.Clear();
             updatecommand.CommandText = "select * from woonplaats";
             woonplaatsreader = updatecommand.ExecuteReader();
@@ -769,7 +814,29 @@ namespace logic
                 updatecommand.ExecuteNonQuery();
             }
 
+            #endregion
+            #region add VPK if not in list
 
+            updatecommand.Parameters.Clear();
+            updatecommand.CommandText = "select * from verpleegkundige";
+            woonplaatsreader = updatecommand.ExecuteReader();
+            bool vpkAlreadyInList = false;
+            while (woonplaatsreader.Read())
+            {
+                if (woonplaatsreader.GetString(1) == pat.Woonplaats)
+                {
+                    vpkAlreadyInList = true;
+                }
+            }
+            woonplaatsreader.Close();
+            if (!vpkAlreadyInList)
+            {
+                updatecommand.Parameters.Clear();
+                updatecommand.CommandText = "insert into verpleegkundige values(null,'" + pat.Verpleegkundige + "');";
+                updatecommand.ExecuteNonQuery();
+            }
+
+            #endregion
             dbConn.closeConn();
 
 

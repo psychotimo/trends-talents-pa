@@ -22,9 +22,7 @@ namespace GUI
         {
             InitializeComponent();
 
-            this.komtVanBox.Items.AddRange(guiFcts.getDiensten());
-            this.gaatNaarBox.Items.AddRange(guiFcts.getDiensten());
-            this.woonplaatsbox.Items.AddRange(dbconn.getWoonplaatsen().ToArray());
+            fillcomboboxes();
             this.populatePatList();
             this.populateGUI(counter);
 
@@ -303,6 +301,10 @@ namespace GUI
             //tab4
             this.verpleegkundigeBox.Text = patientList[counter].Verpleegkundige;
             this.VerslagBox.Text = patientList[counter].Verslag;
+
+            //overviewlabel
+
+            this.fullnameLabel.Text = "naam: " + patientList[counter].Naam + " , " + patientList[counter].Voornaam;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -314,7 +316,7 @@ namespace GUI
             else
             {
                 counter--;
-                
+
                 populateGUI(counter);
             }
         }
@@ -324,7 +326,7 @@ namespace GUI
             if (counter + 1 < patientList.Count())
             {
                 counter++;
-               
+
                 populateGUI(counter);
             }
             else
@@ -336,7 +338,7 @@ namespace GUI
         private void button3_Click(object sender, EventArgs e)
         {
             counter = patientList.Count() - 1;
-           
+
             populateGUI(counter);
         }
 
@@ -629,12 +631,7 @@ namespace GUI
                     patientList.Clear();
                     populatePatList();
                     counter = patientList.Count() - 1;
-                    this.woonplaatsbox.Items.Clear();
-                    this.komtVanBox.Items.Clear();
-                    this.gaatNaarBox.Items.Clear();
-                    this.komtVanBox.Items.AddRange(guiFcts.getDiensten());
-                    this.gaatNaarBox.Items.AddRange(guiFcts.getDiensten());
-                    this.woonplaatsbox.Items.AddRange(dbconn.getWoonplaatsen().ToArray());
+                    fillcomboboxes();
                     populateGUI(counter);
                 }
                 else
@@ -642,12 +639,7 @@ namespace GUI
                     dbconn.updatepatient(patie);
                     patientList.Clear();
                     populatePatList();
-                    this.woonplaatsbox.Items.Clear();
-                    this.komtVanBox.Items.Clear();
-                    this.gaatNaarBox.Items.Clear();
-                    this.komtVanBox.Items.AddRange(guiFcts.getDiensten());
-                    this.gaatNaarBox.Items.AddRange(guiFcts.getDiensten());
-                    this.woonplaatsbox.Items.AddRange(dbconn.getWoonplaatsen().ToArray());
+                    fillcomboboxes();
                     populateGUI(counter);
                 }
             }
@@ -827,5 +819,42 @@ namespace GUI
             this.VerslagBox.Text = "";
         }
 
+
+        private void fillcomboboxes()
+        {
+
+
+
+            for (int i = 1; i <= 20; i++)
+            {
+                string tempAantName = "medicper" + i;
+                string tempMethName = "medicMeth" + i;
+
+                var tempAantNode = this.Controls.Find(tempAantName, true);
+                var tempMetNode = this.Controls.Find(tempMethName, true);
+
+                ComboBox tempaantalcombobox = tempAantNode[0] as ComboBox;
+                ComboBox tempMethbox = tempMetNode[0] as ComboBox;
+                if (tempaantalcombobox is ComboBox || tempMethbox is ComboBox)
+                {
+                    tempaantalcombobox.Items.Clear();
+                    tempaantalcombobox.Items.AddRange(guiFcts.getMedicAantallen());
+                    tempMethbox.Items.Clear();
+                    tempMethbox.Items.AddRange(guiFcts.getMedicMethodes());
+
+                }
+
+            }
+            this.komtVanBox.Items.Clear();
+            this.komtVanBox.Items.AddRange(guiFcts.getDiensten());
+            this.gaatNaarBox.Items.Clear();
+            this.gaatNaarBox.Items.AddRange(guiFcts.getDiensten());
+            this.woonplaatsbox.Items.Clear();
+            this.woonplaatsbox.Items.AddRange(dbconn.getWoonplaatsen().ToArray());
+            this.verpleegkundigeBox.Items.Clear();
+            this.verpleegkundigeBox.Items.AddRange(dbconn.getVerpleegkundigen().ToArray());
+        }
+
+       
     }
 }

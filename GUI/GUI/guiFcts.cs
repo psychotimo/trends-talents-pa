@@ -53,14 +53,22 @@ namespace GUI
 
                 dateTimePicker1.Size = new System.Drawing.Size(83, 20);
                 dateTimePicker1.TabIndex = 49;
-                dateTimePicker1.Text = thisNiv.Stop.Date.ToString();
+                
+                if (thisNiv.Stop.Date< new DateTime(1753,1,1,0,0,0))
+                {
+                    dateTimePicker1.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                }else
+                {
+                    dateTimePicker1.Text = thisNiv.Stop.Date.ToString("dd/MM/yyyy");
+                }
 
                 dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
                 dateTimePicker2.Location = new System.Drawing.Point(106, 3);
 
                 dateTimePicker2.Size = new System.Drawing.Size(83, 20);
                 dateTimePicker2.TabIndex = 48;
-                dateTimePicker2.Text = thisNiv.Start.Date.ToString();
+                
+                dateTimePicker2.Text = thisNiv.Start.Date.ToString("dd/MM/yyyy");
 
                 label1.AutoSize = true;
                 label1.Location = new System.Drawing.Point(38, 28);
@@ -297,7 +305,35 @@ namespace GUI
             return dienstLijst.ToArray();
         }
 
+        public static string[] getMedicAantallen()
+        {
 
+            List<string> aantallen = new List<string>();
+            aantallen.Add("1");
+            aantallen.Add("2");
+            aantallen.Add("3");
+            aantallen.Add("4");
+            aantallen.Add("5");
+            aantallen.Add("6");
+            aantallen.Add("7");
+            aantallen.Add("8");
+
+            return aantallen.ToArray();
+        }
+
+        public static string[] getMedicMethodes()
+        {
+
+            List<string> tempmethodes = new List<string>();
+            tempmethodes.Add("po");
+            tempmethodes.Add("IV");
+            tempmethodes.Add("IM");
+            tempmethodes.Add("SC");
+            tempmethodes.Add("aêrosol");
+            tempmethodes.Add("MS");
+
+            return tempmethodes.ToArray();
+        }
 
     }
 }

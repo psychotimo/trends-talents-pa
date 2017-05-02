@@ -255,6 +255,7 @@ namespace GUI
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.queryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fullnameLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -2410,11 +2411,21 @@ namespace GUI
             this.queryToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.queryToolStripMenuItem.Text = "query";
             // 
+            // fullnameLabel
+            // 
+            this.fullnameLabel.AutoSize = true;
+            this.fullnameLabel.Location = new System.Drawing.Point(479, 9);
+            this.fullnameLabel.Name = "fullnameLabel";
+            this.fullnameLabel.Size = new System.Drawing.Size(36, 13);
+            this.fullnameLabel.TabIndex = 99;
+            this.fullnameLabel.Text = "naam:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 651);
+            this.Controls.Add(this.fullnameLabel);
             this.Controls.Add(this.updateButt);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox6);
@@ -2669,6 +2680,7 @@ namespace GUI
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem queryToolStripMenuItem;
+        private Label fullnameLabel;
     }
 }
 
