@@ -254,8 +254,8 @@ namespace GUI
             this.updateButt = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.queryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fullnameLabel = new System.Windows.Forms.Label();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -2391,8 +2391,7 @@ namespace GUI
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.queryToolStripMenuItem});
+            this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(788, 24);
@@ -2401,15 +2400,11 @@ namespace GUI
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "file";
-            // 
-            // queryToolStripMenuItem
-            // 
-            this.queryToolStripMenuItem.Name = "queryToolStripMenuItem";
-            this.queryToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.queryToolStripMenuItem.Text = "query";
             // 
             // fullnameLabel
             // 
@@ -2419,6 +2414,13 @@ namespace GUI
             this.fullnameLabel.Size = new System.Drawing.Size(36, 13);
             this.fullnameLabel.TabIndex = 99;
             this.fullnameLabel.Text = "naam:";
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.printToolStripMenuItem.Text = "&Print";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -2679,8 +2681,8 @@ namespace GUI
         private Button updateButt;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
-        private ToolStripMenuItem queryToolStripMenuItem;
         private Label fullnameLabel;
+        private ToolStripMenuItem printToolStripMenuItem;
     }
 }
 

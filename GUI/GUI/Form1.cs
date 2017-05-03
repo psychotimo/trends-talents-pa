@@ -855,6 +855,9 @@ namespace GUI
             this.verpleegkundigeBox.Items.AddRange(dbconn.getVerpleegkundigen().ToArray());
         }
 
-       
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            print.patientPrint(patientList[counter]);
+        }
     }
 }
